@@ -5,61 +5,32 @@ import { Header } from '../components/Header';
 import { Sidebar } from '../components/Sidebar';
 import { BlogPost } from '../components/BlogPost';
 import { FeaturedPost } from '../components/FeaturedPost';
+import { useBlogPosts } from '../hooks/useBlogPosts';
 
 const Index = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Neural Network Architecture Fundamentals",
-      excerpt: "Deep dive into the building blocks of modern AI systems and how they process information.",
-      date: "2024-06-20",
-      readTime: "8 minutes",
-      category: "AI/ML",
-      tags: ["Neural Networks", "Deep Learning", "AI"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop"
-    },
-    {
-      id: 2,
-      title: "Brain-Computer Interfaces: The Future is Now",
-      excerpt: "Exploring the latest developments in BCIs and their potential to revolutionize human-computer interaction.",
-      date: "2024-06-18",
-      readTime: "12 minutes",
-      category: "Neuroscience",
-      tags: ["BCI", "Neuroscience", "Technology"],
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Advanced JavaScript Patterns for Neural Computing",
-      excerpt: "How modern JavaScript frameworks can be optimized for AI computations and neural network implementations.",
-      date: "2024-06-15",
-      readTime: "6 minutes",
-      category: "Programming",
-      tags: ["JavaScript", "Programming", "AI"],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop"
-    },
-    {
-      id: 4,
-      title: "Quantum Computing Meets Neural Networks",
-      excerpt: "Investigating the intersection of quantum computing and artificial neural networks for next-gen processing.",
-      date: "2024-06-12",
-      readTime: "10 minutes",
-      category: "Quantum",
-      tags: ["Quantum Computing", "Neural Networks", "Research"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop"
-    }
-  ];
+  const { posts, featuredPost, loading, error } = useBlogPosts();
 
-  const featuredPost = {
-    id: 5,
-    title: "The Ultimate Guide to Neuromorphic Computing",
-    excerpt: "Understanding how brain-inspired computing architectures are reshaping the future of AI and machine learning.",
-    date: "2024-06-25",
-    readTime: "15 minutes",
-    category: "Featured",
-    tags: ["Neuromorphic", "Computing", "AI", "Hardware"],
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&h=600&fit=crop"
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#161F1C] to-slate-900">
+        <Header />
+        <div className="container mx-auto px-4 py-16 text-center">
+          <div className="text-white text-xl">Loading blog posts...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#161F1C] to-slate-900">
+        <Header />
+        <div className="container mx-auto px-4 py-16 text-center">
+          <div className="text-red-400 text-xl">{error}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#161F1C] to-slate-900">
@@ -80,11 +51,13 @@ const Index = () => {
             {/* Main content */}
             <main className="flex-1">
               {/* Featured post */}
-              <section className="mb-12">
-                <Link to={`/blog/${featuredPost.id}`}>
-                  <FeaturedPost post={featuredPost} />
-                </Link>
-              </section>
+              {featuredPost && (
+                <section className="mb-12">
+                  <Link to={`/blog/${featuredPost.id}`}>
+                    <FeaturedPost post={featuredPost} />
+                  </Link>
+                </section>
+              )}
               
               {/* Blog posts grid */}
               <section>
@@ -92,13 +65,19 @@ const Index = () => {
                   <div className="w-1 h-6 bg-green-400 mr-3"></div>
                   Latest Posts
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {blogPosts.map((post) => (
-                    <Link key={post.id} to={`/blog/${post.id}`}>
-                      <BlogPost post={post} />
-                    </Link>
-                  ))}
-                </div>
+                {posts.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {posts.map((post) => (
+                      <Link key={post.id} to={`/blog/${post.id}`}>
+                        <BlogPost post={post} />
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-slate-400 text-center py-8">
+                    No blog posts found.
+                  </div>
+                )}
               </section>
             </main>
             
