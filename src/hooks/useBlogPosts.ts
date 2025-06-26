@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { collection, query, orderBy, where, getDocs } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { BlogPost, BlogPostDisplay } from '../types/blog';
 
@@ -32,10 +32,9 @@ export const useBlogPosts = () => {
       try {
         setLoading(true);
         
-        // Query for published posts only
+        // Simplified query - just order by published date
         const postsQuery = query(
           collection(db, 'posts'),
-          where('draft', '==', false),
           orderBy('published', 'desc')
         );
         
@@ -43,7 +42,11 @@ export const useBlogPosts = () => {
         const fetchedPosts: BlogPost[] = [];
         
         querySnapshot.forEach((doc) => {
-          fetchedPosts.push({ id: doc.id, ...doc.data() } as BlogPost);
+          const postData = { id: doc.id, ...doc.data() } as BlogPost;
+          // Filter out draft posts in JavaScript instead of Firestore query
+          if (!postData.draft) {
+            fetchedPosts.push(postData);
+          }
         });
 
         const displayPosts = fetchedPosts.map(formatPostForDisplay);
