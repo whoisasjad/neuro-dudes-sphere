@@ -4,7 +4,7 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 interface FeaturedPostProps {
   post: {
-    id: number;
+    id: string;
     title: string;
     excerpt: string;
     date: string;
