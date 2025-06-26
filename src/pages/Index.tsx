@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Sidebar } from '../components/Sidebar';
 import { BlogPost } from '../components/BlogPost';
@@ -61,13 +62,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#161F1C] to-slate-900">
       {/* Neural network background pattern */}
       <div className="fixed inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                           radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                           radial-gradient(circle at 40% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%)`
+          backgroundImage: `radial-gradient(circle at 20% 50%, rgba(22, 31, 28, 0.3) 0%, transparent 50%),
+                           radial-gradient(circle at 80% 20%, rgba(22, 31, 28, 0.3) 0%, transparent 50%),
+                           radial-gradient(circle at 40% 80%, rgba(22, 31, 28, 0.3) 0%, transparent 50%)`
         }}></div>
       </div>
       
@@ -80,18 +81,22 @@ const Index = () => {
             <main className="flex-1">
               {/* Featured post */}
               <section className="mb-12">
-                <FeaturedPost post={featuredPost} />
+                <Link to={`/blog/${featuredPost.id}`}>
+                  <FeaturedPost post={featuredPost} />
+                </Link>
               </section>
               
               {/* Blog posts grid */}
               <section>
                 <h2 className="text-2xl font-bold text-white mb-8 flex items-center">
-                  <div className="w-1 h-6 bg-cyan-400 mr-3"></div>
+                  <div className="w-1 h-6 bg-green-400 mr-3"></div>
                   Latest Posts
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {blogPosts.map((post) => (
-                    <BlogPost key={post.id} post={post} />
+                    <Link key={post.id} to={`/blog/${post.id}`}>
+                      <BlogPost post={post} />
+                    </Link>
                   ))}
                 </div>
               </section>

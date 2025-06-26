@@ -12,26 +12,26 @@ export const Header = () => {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <Brain className="w-8 h-8 text-cyan-400" />
-              <div className="absolute inset-0 w-8 h-8 bg-cyan-400/20 rounded-full blur-md"></div>
+              <Brain className="w-8 h-8 text-green-400" />
+              <div className="absolute inset-0 w-8 h-8 bg-green-400/20 rounded-full blur-md"></div>
             </div>
             <h1 className="text-2xl font-bold text-white">
-              Neuro<span className="text-cyan-400">Dudes</span>
+              Neuro<span className="text-green-400">Dudes</span>
             </h1>
           </div>
 
           {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium">
+            <a href="#" className="text-white hover:text-green-400 transition-colors duration-200 font-medium">
               Home
             </a>
-            <a href="#" className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">
+            <a href="#" className="text-slate-300 hover:text-green-400 transition-colors duration-200 font-medium">
               Archive
             </a>
-            <a href="#" className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">
+            <a href="#" className="text-slate-300 hover:text-green-400 transition-colors duration-200 font-medium">
               About
             </a>
-            <a href="#" className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">
+            <a href="#" className="text-slate-300 hover:text-green-400 transition-colors duration-200 font-medium">
               Research
             </a>
           </nav>
@@ -43,7 +43,7 @@ export const Header = () => {
               <input
                 type="text"
                 placeholder="Search..."
-                className="bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors duration-200"
+                className="bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-slate-400 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors duration-200"
               />
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             </div>
@@ -51,7 +51,7 @@ export const Header = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-white hover:text-cyan-400 transition-colors duration-200"
+              className="md:hidden text-white hover:text-green-400 transition-colors duration-200"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -62,16 +62,16 @@ export const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-slate-700/50">
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="text-white hover:text-cyan-400 transition-colors duration-200 font-medium">
+              <a href="#" className="text-white hover:text-green-400 transition-colors duration-200 font-medium">
                 Home
               </a>
-              <a href="#" className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">
+              <a href="#" className="text-slate-300 hover:text-green-400 transition-colors duration-200 font-medium">
                 Archive
               </a>
-              <a href="#" className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">
+              <a href="#" className="text-slate-300 hover:text-green-400 transition-colors duration-200 font-medium">
                 About
               </a>
-              <a href="#" className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">
+              <a href="#" className="text-slate-300 hover:text-green-400 transition-colors duration-200 font-medium">
                 Research
               </a>
               {/* Mobile search */}
@@ -79,7 +79,7 @@ export const Header = () => {
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-colors duration-200"
+                  className="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-slate-400 focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-colors duration-200"
                 />
                 <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
               </div>

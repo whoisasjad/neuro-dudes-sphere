@@ -18,7 +18,7 @@ interface FeaturedPostProps {
 export const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
   return (
     <article className="relative group cursor-pointer">
-      <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-400/10">
+      <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-green-400/30 transition-all duration-300 hover:shadow-2xl hover:shadow-green-400/10">
         <div className="relative">
           <img
             src={post.image}
@@ -29,7 +29,7 @@ export const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
           
           {/* Featured badge */}
           <div className="absolute top-4 left-4">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            <span className="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
               Featured
             </span>
           </div>
@@ -40,14 +40,14 @@ export const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="bg-slate-700/80 text-cyan-300 px-2 py-1 rounded text-xs font-medium"
+                  className="bg-slate-700/80 text-green-300 px-2 py-1 rounded text-xs font-medium"
                 >
                   #{tag}
                 </span>
               ))}
             </div>
             
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors duration-300">
+            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-green-300 transition-colors duration-300">
               {post.title}
             </h2>
             
@@ -67,7 +67,7 @@ export const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
                 </div>
               </div>
               
-              <div className="flex items-center text-cyan-400 font-medium group-hover:text-cyan-300 transition-colors duration-300">
+              <div className="flex items-center text-green-400 font-medium group-hover:text-green-300 transition-colors duration-300">
                 <span className="mr-2">Read More</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
